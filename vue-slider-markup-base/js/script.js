@@ -57,20 +57,31 @@ createApp ({
     },
     methods: {
         controls: function(direction) {
+            const thumbs = document.querySelectorAll(".thumb");
+
             if (direction == 'forward') {
                 if (this.slideIndex < this.slides.length - 1) {
-                    return this.slideIndex++;
+                    thumbs[this.slideIndex].classList.remove("active");
+                    this.slideIndex++;
+                    thumbs[this.slideIndex].classList.add("active");
                 }
                 else if (this.slideIndex == this.slides.length - 1) {
-                    return this.slideIndex = 0;
+                    thumbs[this.slideIndex].classList.remove("active");
+                    this.slideIndex = 0;
+                    thumbs[this.slideIndex].classList.add("active");
                 }
+                
             }
             else if (direction == 'backward') {
                 if (this.slideIndex > 0) {
-                    return this.slideIndex--;
+                    thumbs[this.slideIndex].classList.remove("active");
+                    this.slideIndex--;
+                    thumbs[this.slideIndex].classList.add("active");
                 }
                 else if (this.slideIndex == 0) {
-                    return this.slideIndex = this.slides.length - 1;
+                    thumbs[this.slideIndex].classList.remove("active");
+                    this.slideIndex = this.slides.length - 1;
+                    thumbs[this.slideIndex].classList.add("active");
                 }
             }
         }
