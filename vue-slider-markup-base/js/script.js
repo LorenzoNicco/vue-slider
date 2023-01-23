@@ -52,38 +52,81 @@ createApp ({
                     title: "Marvel's Avengers",
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 }
+            ],
+            thumbs: [
+                {
+                    image: 'img/01.webp'
+                },
+                {
+                    image: 'img/02.webp'
+                },
+                {
+                    image: 'img/03.webp'
+                },
+                {
+                    image: 'img/04.webp'
+                },
+                {
+                    image: 'img/05.webp'
+                }
             ]
         }
     },
     methods: {
+        // versione 1
+        // controls: function(direction) {
+        //     const thumbs = document.querySelectorAll(".thumb");
+
+        //     if (direction == 'forward') {
+        //         if (this.slideIndex < this.slides.length - 1) {
+        //             thumbs[this.slideIndex].classList.remove("active");
+        //             this.slideIndex++;
+        //             thumbs[this.slideIndex].classList.add("active");
+        //         }
+        //         else if (this.slideIndex == this.slides.length - 1) {
+        //             thumbs[this.slideIndex].classList.remove("active");
+        //             this.slideIndex = 0;
+        //             thumbs[this.slideIndex].classList.add("active");
+        //         }
+                
+        //     }
+        //     else if (direction == 'backward') {
+        //         if (this.slideIndex > 0) {
+        //             thumbs[this.slideIndex].classList.remove("active");
+        //             this.slideIndex--;
+        //             thumbs[this.slideIndex].classList.add("active");
+        //         }
+        //         else if (this.slideIndex == 0) {
+        //             thumbs[this.slideIndex].classList.remove("active");
+        //             this.slideIndex = this.slides.length - 1;
+        //             thumbs[this.slideIndex].classList.add("active");
+        //         }
+        //     }
+        // },
+        // versione 2
         controls: function(direction) {
             const thumbs = document.querySelectorAll(".thumb");
 
             if (direction == 'forward') {
                 if (this.slideIndex < this.slides.length - 1) {
-                    thumbs[this.slideIndex].classList.remove("active");
                     this.slideIndex++;
-                    thumbs[this.slideIndex].classList.add("active");
                 }
                 else if (this.slideIndex == this.slides.length - 1) {
-                    thumbs[this.slideIndex].classList.remove("active");
                     this.slideIndex = 0;
-                    thumbs[this.slideIndex].classList.add("active");
                 }
                 
             }
             else if (direction == 'backward') {
                 if (this.slideIndex > 0) {
-                    thumbs[this.slideIndex].classList.remove("active");
                     this.slideIndex--;
-                    thumbs[this.slideIndex].classList.add("active");
                 }
                 else if (this.slideIndex == 0) {
-                    thumbs[this.slideIndex].classList.remove("active");
                     this.slideIndex = this.slides.length - 1;
-                    thumbs[this.slideIndex].classList.add("active");
                 }
             }
+        },
+        thumbSelection: function () {
+            this.slides[this.slideIndex] == this.thumbs[this.slideIndex];
         }
     } 
 }).mount('#app');
