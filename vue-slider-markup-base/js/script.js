@@ -30,6 +30,7 @@ createApp ({
     data () {
         return {
             slideIndex: 0,
+            autoplay: null,
             slides: [
                 {
                     image: 'img/01.webp',
@@ -104,29 +105,52 @@ createApp ({
         //     }
         // },
         // versione 2
-        controls: function(direction) {
-            const thumbs = document.querySelectorAll(".thumb");
+        // controls: function(direction) {
+        //     // const thumbs = document.querySelectorAll(".thumb");
 
-            if (direction == 'forward') {
-                if (this.slideIndex < this.slides.length - 1) {
-                    this.slideIndex++;
-                }
-                else if (this.slideIndex == this.slides.length - 1) {
-                    this.slideIndex = 0;
-                }
+        //     if (direction == 'forward') {
+        //         if (this.slideIndex < this.slides.length - 1) {
+        //             this.slideIndex++;
+        //         }
+        //         else if (this.slideIndex == this.slides.length - 1) {
+        //             this.slideIndex = 0;
+        //         }
                 
+        //     }
+        //     else if (direction == 'backward') {
+        //         if (this.slideIndex > 0) {
+        //             this.slideIndex--;
+        //         }
+        //         else if (this.slideIndex == 0) {
+        //             this.slideIndex = this.slides.length - 1;
+        //         }
+        //     }
+        // },
+        // Versione 3
+        nextSlide () {
+            if (this.slideIndex < this.slides.length - 1) {
+                this.slideIndex++;
             }
-            else if (direction == 'backward') {
-                if (this.slideIndex > 0) {
-                    this.slideIndex--;
-                }
-                else if (this.slideIndex == 0) {
-                    this.slideIndex = this.slides.length - 1;
-                }
+            else if (this.slideIndex == this.slides.length - 1) {
+                this.slideIndex = 0;
             }
         },
-        thumbSelection: function () {
-            this.slides[this.slideIndex] == this.thumbs[this.slideIndex];
+        prevSlide () {
+            if (this.slideIndex > 0) {
+                this.slideIndex--;
+            }
+            else if (this.slideIndex == 0) {
+                this.slideIndex = this.slides.length - 1;
+            }
+        },
+        hoverOnSlide () {
+            clearInterval(this.autoplay);
+        },
+        leaveSlider () {
+            this.autoplay = setInterval(this.nextSlide, 3000);
         }
-    } 
+    },
+    mounted () {
+        this.autoplay = setInterval(this.nextSlide, 3000);
+    }
 }).mount('#app');

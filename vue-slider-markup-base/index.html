@@ -14,7 +14,10 @@
     <div id="app">
 
         <div class="container">
-            <div class="slider-wrapper" tabindex="0">
+            <div class="slider-wrapper" tabindex="0"
+             @mouseenter="hoverOnSlide()"
+             @mouseleave="leaveSlider()"
+            >
 
                 <div class="item">
                     <img v-bind:src="slides[slideIndex]['image']" alt="Spiderman" />
@@ -27,8 +30,8 @@
                 </div>
 
                 <div class="thumbs">
-                    <div class="prev" v-on:click="controls('backward')"></div>
-                    <div class="next" v-on:click="controls('forward')"></div>
+                    <div class="prev" v-on:click="prevSlide()"></div>
+                    <div class="next" v-on:click="nextSlide()"></div>
                     <!-- versione 1 -->
                     <!-- <div class="thumb active">
                         <img src="img/01.webp" alt="Svezia" />
@@ -47,7 +50,7 @@
                     </div> -->
                     <!-- versione 2 -->
                     <div class="thumbs-container">
-                        <div class="thumb" v-for="(image, index) in thumbs" v-bind:class="index == slideIndex ? 'active' : ''" v-on:click="thumbSelection()">
+                        <div class="thumb" v-for="(image, index) in thumbs" v-bind:class="index == slideIndex ? 'active' : ''" v-on:click="slideIndex = index">
                             <img v-bind:src="thumbs[index]['image']" alt="Svezia" />
                         </div>
                     </div>
